@@ -1,0 +1,78 @@
+/* Tambahan CSS untuk efek modern dan animasi interaktif */
+/* filepath: c:\Users\arrev\Music\new proji 641\HBD Laily Silvani\Untitled-1.html */
+
+.container {
+    /* ...existing code... */
+    transition: box-shadow 0.6s, transform 0.4s;
+}
+.container.glow {
+    box-shadow: 0 0 32px 8px #ffe0f7, 0 8px 32px rgba(255, 182, 230, 0.25), 0 0 80px #ff69b4;
+    transform: scale(1.025);
+}
+.logo {
+    /* ...existing code... */
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+.logo.floating {
+    animation: floatingLogo 2.5s infinite ease-in-out;
+}
+@keyframes floatingLogo {
+    0%, 100% { transform: translateY(0);}
+    50% { transform: translateY(-12px);}
+}
+.btn {
+    /* ...existing code... */
+    position: relative;
+    overflow: hidden;
+}
+.btn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s;
+    z-index: 0;
+}
+.btn:active::after {
+    width: 200px;
+    height: 200px;
+    transition: 0s;
+}
+.btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+.cake.shake {
+    animation: shakeCake 0.5s;
+}
+@keyframes shakeCake {
+    0% { transform: translateX(0);}
+    20% { transform: translateX(-8px);}
+    40% { transform: translateX(8px);}
+    60% { transform: translateX(-6px);}
+    80% { transform: translateX(6px);}
+    100% { transform: translateX(0);}
+}
+.message {
+    /* ...existing code... */
+    box-shadow: 0 2px 8px #ffb6e6, 0 0 24px #ffe0f7;
+    background: linear-gradient(90deg, #fff0fa 80%, #ffe0f7 100%);
+    position: relative;
+    z-index: 1;
+}
+.message .cursor {
+    display: inline-block;
+    width: 1ch;
+    background: none;
+    color: #d63384;
+    animation: blink 0.8s steps(1) infinite;
+}
+@keyframes blink {
+    0%, 100% { opacity: 1;}
+    50% { opacity: 0;}
+}

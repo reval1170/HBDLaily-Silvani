@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Laily Silvani</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Tambahan CSS untuk efek dan animasi */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f8ff;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .cake {
+            width: 200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .message {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .btn-ucapan {
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff69b4;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .btn-ucapan:hover {
+            background-color: #ff1493;
+        }
+
+        /* Efek animasi */
+        @keyframes float {
+            0% { transform: translatey(0); }
+            50% { transform: translatey(-10px); }
+            100% { transform: translatey(0); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            25% { transform: translate(-1px, -2px) rotate(-1deg); }
+            50% { transform: translate(-3px, 0px) rotate(1deg); }
+            75% { transform: translate(2px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -1px) rotate(-1deg); }
+        }
+
+        .shake {
+            animation: shake 0.6s ease-in-out;
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px #ff69b4, 0 0 10px #ff69b4; }
+            50% { box-shadow: 0 0 20px #ff1493, 0 0 30px #ff1493; }
+            100% { box-shadow: 0 0 5px #ff69b4, 0 0 10px #ff69b4; }
+        }
+
+        .glow {
+            animation: glow 1.8s ease-in-out infinite;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background-color: #ff69b4;
+            margin-left: 2px;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo floating">🎉 HBD Laily Silvani 🎉</div>
+        <div class="cake"></div>
+        <div id="message" class="message"></div>
+        <button id="btn-ucapan" class="btn-ucapan">Buka Ucapan</button>
+    </div>
+
+    <script>
+        // Tambahan JavaScript untuk interaksi dan animasi
+        const btn = document.getElementById('btn-ucapan');
+        const message = document.getElementById('message');
+        const cake = document.querySelector('.cake');
+        const container = document.querySelector('.container');
+        const logo = document.querySelector('.logo');
+        let shown = false;
+
+        // Efek floating pada logo
+        logo.classList.add('floating');
+
+        // Typing effect untuk pesan ucapan
+        function typeMessage(html, el, cb) {
+            el.innerHTML = '';
+            let i = 0;
+            let tag = false;
+            let temp = '';
+            function type() {
+                if (i < html.length) {
+                    let char = html[i];
+                    if (char === '<') tag = true;
+                    if (tag) temp += char;
+                    else el.innerHTML += char;
+                    if (char === '>') {
+                        tag = false;
+                        el.innerHTML += temp;
+                        temp = '';
+                    }
+                    i++;
+                    setTimeout(type, 18 + Math.random() * 30);
+                } else {
+                    el.innerHTML += '<span class="cursor">|</span>';
+                    if (cb) cb();
+                }
+            }
+            type();
+        }
+
+        // Efek suara pop sederhana (Web Audio API)
+        function playPop() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const o = ctx.createOscillator();
+                const g = ctx.createGain();
+                o.type = 'triangle';
+                o.frequency.value = 540;
+                g.gain.value = 0.18;
+                o.connect(g);
+                g.connect(ctx.destination);
+                o.start();
+                setTimeout(() => {
+                    g.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.08);
+                    o.stop(ctx.currentTime + 0.09);
+                    ctx.close();
+                }, 80);
+            } catch {}
+        }
+
+        btn.addEventListener('click', function() {
+            if (shown) return;
+            shown = true;
+
+            // Shake cake
+            cake.classList.add('shake');
+            setTimeout(() => cake.classList.remove('shake'), 600);
+
+            // Glow effect pada container
+            container.classList.add('glow');
+            setTimeout(() => container.classList.remove('glow'), 1800);
+
+            // Play pop sound
+            playPop();
+
+            // Typing effect
+            const msg = `<b>Happy Birthday, Laily Silvani! 🎂🎈</b><br>
+            Semoga selalu bahagia, sehat, dan semua impian kamu tercapai.<br>
+            Tetap jadi pribadi yang ceria dan semoga kita selalu bersama!<br>
+            <span style="font-size:1.5rem;">💖💐✨</span>`;
+            typeMessage(msg, message, () => {});
+
+            message.classList.add('show');
+            confettiActive = true;
+            startConfetti();
+            animateConfetti();
+            btn.disabled = true;
+            btn.innerText = "Selamat Ulang Tahun! 🎀";
+        });
+    </script>
+</body>
+</html>
