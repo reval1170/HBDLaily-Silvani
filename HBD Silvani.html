@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Selamat Ulang Tahun Laily Silvani!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffb6e6 0%, #ffe0f7 100%);
+            font-family: 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 500px;
+            margin: 60px auto 0 auto;
+            background: #fff0fa;
+            border-radius: 32px;
+            box-shadow: 0 8px 32px rgba(255, 182, 230, 0.25);
+            padding: 40px 24px 32px 24px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: #ff69b4;
+            border-radius: 50%;
+            margin: 0 auto 16px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #fff;
+            font-family: 'Pacifico', cursive;
+            box-shadow: 0 4px 16px #ffb6e6;
+            user-select: none;
+        }
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: #ff69b4;
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            text-shadow: 1px 2px 0 #fff;
+        }
+        .subtitle {
+            color: #d63384;
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+        }
+        .main-img {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 20px auto;
+            background: linear-gradient(135deg, #ffb6e6 60%, #fff0fa 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 24px #ffb6e6;
+            animation: bounce 2.5s infinite;
+        }
+        /* Placeholder: Kue ulang tahun lucu */
+        .cake {
+            width: 90px;
+            height: 80px;
+            position: relative;
+            margin: 0 auto;
+        }
+        .cake-base {
+            width: 90px;
+            height: 40px;
+            background: #ff69b4;
+            border-radius: 0 0 40px 40px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            box-shadow: 0 4px 0 #e75480;
+        }
+        .cake-top {
+            width: 90px;
+            height: 30px;
+            background: #fff0fa;
+            border-radius: 40px 40px 20px 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            box-shadow: 0 2px 0 #ffb6e6;
+        }
+        .candle {
+            width: 10px;
+            height: 24px;
+            background: #fff;
+            border-radius: 4px;
+            position: absolute;
+            left: 40px;
+            top: -18px;
+            z-index: 3;
+            box-shadow: 0 1px 0 #ffb6e6;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+        .flame {
+            width: 12px;
+            height: 18px;
+            background: radial-gradient(ellipse at center, #ffe066 60%, #ffb6e6 100%);
+            border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+            position: absolute;
+            left: -1px;
+            top: -16px;
+            animation: flame 1s infinite alternate;
+            opacity: 0.85;
+        }
+        @keyframes flame {
+            0% { transform: scaleY(1) scaleX(1); opacity: 0.85;}
+            50% { transform: scaleY(1.2) scaleX(0.9); opacity: 1;}
+            100% { transform: scaleY(1) scaleX(1); opacity: 0.85;}
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0);}
+            50% { transform: translateY(-18px);}
+        }
+        .btn {
+            background: linear-gradient(90deg, #ff69b4 60%, #ffb6e6 100%);
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            padding: 14px 36px;
+            font-size: 1.1rem;
+            font-family: 'Pacifico', cursive;
+            cursor: pointer;
+            margin-top: 18px;
+            box-shadow: 0 2px 8px #ffb6e6;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .btn:hover {
+            background: linear-gradient(90deg, #ffb6e6 60%, #ff69b4 100%);
+            transform: scale(1.05);
+        }
+        .confetti {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 999;
+        }
+        .message {
+            margin-top: 28px;
+            font-size: 1.2rem;
+            color: #d63384;
+            background: #fff0fa;
+            border-radius: 18px;
+            padding: 18px 12px;
+            box-shadow: 0 2px 8px #ffb6e6;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+        .message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 24px 8px 18px 8px;
+            }
+            .main-img {
+                width: 120px;
+                height: 120px;
+            }
+            .cake {
+                width: 60px;
+                height: 54px;
+            }
+            .cake-base, .cake-top {
+                width: 60px;
+            }
+            .cake-base { height: 26px;}
+            .cake-top { height: 18px;}
+            .candle { left: 25px; height: 16px;}
+        }
+    </style>
+</head>
+<body>
+    <canvas class="confetti"></canvas>
+    <div class="container">
+        <div class="logo">LS</div>
+        <h1>Selamat Ulang Tahun!</h1>
+        <div class="subtitle">Untuk orang yang spesial, <b>Laily Silvani</b> 🎀</div>
+        <div class="main-img">
+            <div class="cake">
+                <div class="cake-top"></div>
+                <div class="cake-base"></div>
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+            </div>
+        </div>
+        <button class="btn" id="btn-ucapan">KLIK DISINI 🎉</button>
+        <div class="message" id="message">
+            <!-- Pesan akan muncul di sini -->
+        </div>
+    </div>
+    <script>
+        // Confetti Animation
+        const canvas = document.querySelector('.confetti');
+        const ctx = canvas.getContext('2d');
+        let confettiPieces = [];
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        function randomColor() {
+            const colors = ['#ff69b4', '#ffb6e6', '#ffe0f7', '#fff0fa', '#d63384', '#ffe066'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        function createConfettiPiece() {
+            return {
+                x: Math.random() * canvas.width,
+                y: -20,
+                r: 6 + Math.random() * 10,
+                d: Math.random() * 80 + 40,
+                color: randomColor(),
+                tilt: Math.random() * 10 - 10,
+                tiltAngle: 0,
+                tiltAngleIncremental: (Math.random() * 0.07) + .05
+            };
+        }
+        function startConfetti() {
+            confettiPieces = [];
+            for (let i = 0; i < 80; i++) {
+                confettiPieces.push(createConfettiPiece());
+            }
+        }
+        function drawConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            confettiPieces.forEach((p, i) => {
+                ctx.beginPath();
+                ctx.lineWidth = p.r;
+                ctx.strokeStyle = p.color;
+                ctx.moveTo(p.x + p.tilt + p.r / 3, p.y);
+                ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 3);
+                ctx.stroke();
+            });
+            updateConfetti();
+        }
+        function updateConfetti() {
+            for (let i = 0; i < confettiPieces.length; i++) {
+                let p = confettiPieces[i];
+                p.y += (Math.cos(p.d) + 3 + p.r / 2) / 2;
+                p.x += Math.sin(0.01 * p.d);
+                p.tiltAngle += p.tiltAngleIncremental;
+                p.tilt = Math.sin(p.tiltAngle) * 15;
+                if (p.y > canvas.height) {
+                    confettiPieces[i] = createConfettiPiece();
+                    confettiPieces[i].y = -20;
+                }
+            }
+        }
+        let confettiActive = false;
+        function animateConfetti() {
+            if (confettiActive) {
+                drawConfetti();
+                requestAnimationFrame(animateConfetti);
+            }
+        }
+
+        // Ucapan interaktif
+        const btn = document.getElementById('btn-ucapan');
+        const message = document.getElementById('message');
+        let shown = false;
+        btn.addEventListener('click', function() {
+            if (shown) return;
+            shown = true;
+            message.innerHTML = `
+                <b>Happy Birthday, Laily Silvani! 🎂🎈</b><br>
+                Semoga selalu bahagia, sehat, dan semua impian kamu tercapai.<br>
+                Tetap jadi pribadi yang ceria dan semoga kita selalu bersama!<br>
+                <span style="font-size:1.5rem;">💖💐✨</span>
+            `;
+            message.classList.add('show');
+            confettiActive = true;
+            startConfetti();
+            animateConfetti();
+            btn.disabled = true;
+            btn.innerText = "Selamat Ulang Tahun! 🎀";
+        });
+    </script>
+</body>
+</html>
